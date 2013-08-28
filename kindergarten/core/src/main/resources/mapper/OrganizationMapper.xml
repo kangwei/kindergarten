@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.titian.core.dao.OrganizationMapper" >
+    <cache/>
+  <resultMap id="BaseResultMap" type="com.titian.core.domain.Organization" >
+    <id column="org_id" property="orgId" jdbcType="VARCHAR" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="motto" property="motto" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="org_type" property="orgType" jdbcType="CHAR" />
+    <result column="org_address" property="orgAddress" jdbcType="VARCHAR" />
+    <result column="org_master" property="orgMaster" jdbcType="VARCHAR" />
+    <result column="org_master_mobile" property="orgMasterMobile" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    org_id, org_name, motto, introduce, create_time, update_time, status, org_type, org_address, 
+    org_master, org_master_mobile
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_organization
+    where org_id = #{orgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_organization
+    where org_id = #{orgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.titian.core.domain.Organization" >
+    insert into t_organization (org_id, org_name, motto, 
+      introduce, create_time, update_time, 
+      status, org_type, org_address, 
+      org_master, org_master_mobile)
+    values (#{orgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{motto,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=CHAR}, #{orgType,jdbcType=CHAR}, #{orgAddress,jdbcType=VARCHAR}, 
+      #{orgMaster,jdbcType=VARCHAR}, #{orgMasterMobile,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.titian.core.domain.Organization" >
+    insert into t_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="motto != null" >
+        motto,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="orgType != null" >
+        org_type,
+      </if>
+      <if test="orgAddress != null" >
+        org_address,
+      </if>
+      <if test="orgMaster != null" >
+        org_master,
+      </if>
+      <if test="orgMasterMobile != null" >
+        org_master_mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgId != null" >
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="motto != null" >
+        #{motto,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="orgType != null" >
+        #{orgType,jdbcType=CHAR},
+      </if>
+      <if test="orgAddress != null" >
+        #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMaster != null" >
+        #{orgMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMasterMobile != null" >
+        #{orgMasterMobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.titian.core.domain.Organization" >
+    update t_organization
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="motto != null" >
+        motto = #{motto,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="orgType != null" >
+        org_type = #{orgType,jdbcType=CHAR},
+      </if>
+      <if test="orgAddress != null" >
+        org_address = #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMaster != null" >
+        org_master = #{orgMaster,jdbcType=VARCHAR},
+      </if>
+      <if test="orgMasterMobile != null" >
+        org_master_mobile = #{orgMasterMobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where org_id = #{orgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Organization" >
+    update t_organization
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      motto = #{motto,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=CHAR},
+      org_type = #{orgType,jdbcType=CHAR},
+      org_address = #{orgAddress,jdbcType=VARCHAR},
+      org_master = #{orgMaster,jdbcType=VARCHAR},
+      org_master_mobile = #{orgMasterMobile,jdbcType=VARCHAR}
+    where org_id = #{orgId,jdbcType=VARCHAR}
+  </update>
+</mapper>
