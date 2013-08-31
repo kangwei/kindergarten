@@ -12,6 +12,7 @@ Ext.onReady(function(){
     Ext.tip.QuickTipManager.init();
     //创建登陆FORM面板
     var login_panel = Ext.create('Ext.form.Panel', {
+        id:'user_login',
         title: '',
         bodyPadding: 5,
         width: 230,
@@ -23,12 +24,12 @@ Ext.onReady(function(){
         },
         items:[
             {
-                name: 'username',
+                name: 'userAccount',
                 fieldLabel: '用户名',
                 emptyText:'请输入用户名',
                 allowBlank: false
             },{
-                name: 'userpass',
+                name: 'userPassword',
                 fieldLabel: '密码',
                 emptyText:'请输入登陆密码',
                 allowBlank: false
@@ -39,7 +40,22 @@ Ext.onReady(function(){
                 text:"确定",
                 handler:function(){
                     //我是登陆发送Ajax请求的地方，暂时跳转页面
-                    window.location.href = "main.html";
+                    //ROOT_PATH/doLogin
+                    var url = ROOT_PATH + "/doLogin";
+                    Ext.getCmp("user_login").submit({
+                        clientValidation:true,
+                        url:url,
+                        method:'post',
+                        success:function(form,action){
+                            top.Ext.Msg.alert("提示","登陆成功");
+                            window.setTimeout(function(){
+                                top.location.href = ROOT_PATH + "/home";
+                            },3000);
+                        },
+                        failure:function(form,action){
+                            Ext.Msg.alert("提示","数据提交失败");
+                        }
+                    });
                 }
             }
         ]

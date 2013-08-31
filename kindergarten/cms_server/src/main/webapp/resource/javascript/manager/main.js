@@ -9,10 +9,10 @@
 Ext.QuickTips.init();
 Ext.Loader.setConfig({enabled: true});
 
-Ext.Loader.setPath('tt.plugin', '../javascript/manager/plugin');
+Ext.Loader.setPath('tt.plugin', ROOT_PATH + '/javascript/manager/plugin');
 
 Ext.require([
-    'tt.plugin.weiXin',
+    'tt.plugin.weixin',
     'tt.plugin.article'
 ]);
 
@@ -79,7 +79,7 @@ Ext.onReady(function(){
                                 var nodeName = re.data.text;
                                 switch(nodeName){
                                     case '微信平台':
-                                        var article_panel = new tt.plugin.weiXin().show();
+                                        var article_panel = new tt.plugin.weixin().show();
                                         break;
                                     default :
                                         //弹出创建文章的面板（暂时试试）

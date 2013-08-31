@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-Ext.define('tt.plugin.weiXin', {
+Ext.define('tt.plugin.weixin', {
     extend: 'Ext.window.Window',
     height: 400,
     width: 840,

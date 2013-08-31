@@ -6,9 +6,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<mvc:resources mapping="/images/**" location="/resource/images/"/>
-    <mvc:resources mapping="/css/**" location="/resource/css/"/>
-    <mvc:resources mapping="/js/**" location="/resource/js/"/>
+    <mvc:resources mapping="/ext/**" location="/resource/ext/"/>
+    <mvc:resources mapping="/theme/**" location="/resource/theme/"/>
+    <mvc:resources mapping="/javascript/**" location="/resource/javascript/"/>
+    <mvc:resources mapping="/kindeditor/**" location="/resource/kindeditor/"/>
 
     <mvc:default-servlet-handler/>
 

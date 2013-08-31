@@ -4,14 +4,21 @@
   Date: 13-8-26
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
-<head><title>home</title></head>
+<head>
+    <meta charset="utf-8" />
+    <title>后台系统与新闻发布系统</title>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/ext/resources/css/ext-all.css" />
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/ext/resources/css/ext-all.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/ext/bootstrap.js"></script>
+    <script type="text/javascript">
+    var ROOT_PATH = "${pageContext.request.contextPath}";
+    </script>
+</head>
 <body>
-    欢迎使用本系统--${sessionScope.sessionUser.userNick}
-    <p><a href="${pageContext.request.contextPath}/user">用户管理</a></p>
-    <p><a href="${pageContext.request.contextPath}/role">角色管理</a></p>
-    <p><a href="${pageContext.request.contextPath}/function">功能管理</a></p>
-    <p><a href="${pageContext.request.contextPath}/right">权限分配</a></p>
-    <p><a href="">栏目管理</a></p>
+<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/manager/main.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/ext/locale/ext-lang-zh_CN.js"></script>
 </body>
 </html>
