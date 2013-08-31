@@ -13,17 +13,7 @@
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
-            <groupId>com.talkyun.apus</groupId>
-            <artifactId>apus-comm</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>com.springsource.org.apache.commons.lang</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>1.6.8</version>
@@ -37,13 +27,13 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
             <version>2.2</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>com.opensoft</groupId>
             <artifactId>common_web_frame</artifactId>
             <version>2.0</version>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.6</version>
@@ -77,17 +67,17 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -107,7 +97,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-asm</artifactId>
-            <version>${spring.version}</version>
+            <version>${spring.security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -165,7 +155,7 @@
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.9-RC1</version>
-        </dependency>
+        </dependency>-->
         <!--servlet lib-->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -189,27 +179,20 @@
         </dependency>
 
         <!--json-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.nebhale.jsonpath</groupId>
             <artifactId>jsonpath</artifactId>
             <version>1.2</version>
-        </dependency>
+        </dependency>-->
 
         <!--apache commons-->
-        <dependency>
+       <!-- <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
             <version>1.6</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <project.version>1.0</project.version>
-        <spring.version>3.0.6.RELEASE</spring.version>
-    </properties>
     <build>
         <plugins>
             <plugin>

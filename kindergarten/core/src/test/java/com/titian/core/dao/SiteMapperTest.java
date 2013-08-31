@@ -7,13 +7,16 @@
 package com.titian.core.dao;
 
 import com.titian.core.domain.Site;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Description :
@@ -21,7 +24,7 @@ import java.util.List;
  * @author : KangWei
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = MockServletContextWebContextLoader.class, locations = {"classpath*:spring/applicationContext-*.xml", "classpath*:spring/apus-datasource-c3p0.xml"})
+@ContextConfiguration(locations = {"classpath*:spring/applicationContext-*.xml", "classpath*:spring/apus-datasource-druid.xml"})
 public class SiteMapperTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     SiteMapper siteMapper;
@@ -64,6 +67,22 @@ public class SiteMapperTest extends AbstractJUnit4SpringContextTests {
         Site site2 = siteMapper.selectByPrimaryKey(2);
         Site site3 = siteMapper.selectByPrimaryKey(2);
         System.out.println(site2.getSiteName());
+    }
+
+    @Test
+    public void testDynamicQueryCache() {
+        Map<String, String> param = new HashMap<String, String>();
+        List<Site> sites = siteMapper.selectByName(param);
+        List<Site> sites1 = siteMapper.selectByName(param);
+        param.put("siteName", "更改");
+        siteMapper.selectByName(param);
+        siteMapper.selectByName(param);
+        param.put("siteName", "更改1");
+        siteMapper.selectByName(param);
+        siteMapper.selectByName(param);
+        param.clear();
+        siteMapper.selectByName(param);
+        siteMapper.selectByName(null);
     }
 
     @org.junit.Test

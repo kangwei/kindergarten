@@ -1,107 +1,116 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.titian.core.dao.SiteMapper" >
-    <cache/>
-  <resultMap id="BaseResultMap" type="com.titian.core.domain.Site" >
-    <id column="site_id" property="siteId" jdbcType="INTEGER" />
-    <result column="org_id" property="orgId" jdbcType="VARCHAR" />
-    <result column="template_id" property="templateId" jdbcType="INTEGER" />
-    <result column="site_name" property="siteName" jdbcType="VARCHAR" />
-    <result column="site_url" property="siteUrl" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.titian.core.dao.SiteMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+    <resultMap id="BaseResultMap" type="com.titian.core.domain.Site">
+        <id column="site_id" property="siteId" jdbcType="INTEGER"/>
+        <result column="org_id" property="orgId" jdbcType="VARCHAR"/>
+        <result column="template_id" property="templateId" jdbcType="INTEGER"/>
+        <result column="site_name" property="siteName" jdbcType="VARCHAR"/>
+        <result column="site_url" property="siteUrl" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     site_id, org_id, template_id, site_name, site_url, create_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_site
-    where site_id = #{siteId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_site
-    where site_id = #{siteId,jdbcType=INTEGER}
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_site
+        where site_id = #{siteId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByName" resultMap="BaseResultMap" parameterType="map">
+        select <include refid="Base_Column_List"/>
+        from t_site
+        <if test="siteName != null">
+            where site_name = #{siteName}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    DELETE FROM t_site
+    WHERE site_id = #{siteId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.titian.core.domain.Site" >
-    insert into t_site (site_id, org_id, template_id, 
+    <insert id="insert" parameterType="com.titian.core.domain.Site">
+    INSERT INTO t_site (site_id, org_id, template_id,
       site_name, site_url, create_time
       )
-    values (#{siteId,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, 
+    VALUES (#{siteId,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER},
       #{siteName,jdbcType=VARCHAR}, #{siteUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.titian.core.domain.Site" >
-    insert into t_site
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="siteId != null" >
-        site_id,
-      </if>
-      <if test="orgId != null" >
-        org_id,
-      </if>
-      <if test="templateId != null" >
-        template_id,
-      </if>
-      <if test="siteName != null" >
-        site_name,
-      </if>
-      <if test="siteUrl != null" >
-        site_url,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="siteId != null" >
-        #{siteId,jdbcType=INTEGER},
-      </if>
-      <if test="orgId != null" >
-        #{orgId,jdbcType=VARCHAR},
-      </if>
-      <if test="templateId != null" >
-        #{templateId,jdbcType=INTEGER},
-      </if>
-      <if test="siteName != null" >
-        #{siteName,jdbcType=VARCHAR},
-      </if>
-      <if test="siteUrl != null" >
-        #{siteUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.titian.core.domain.Site" >
-    update t_site
-    <set >
-      <if test="orgId != null" >
-        org_id = #{orgId,jdbcType=VARCHAR},
-      </if>
-      <if test="templateId != null" >
-        template_id = #{templateId,jdbcType=INTEGER},
-      </if>
-      <if test="siteName != null" >
-        site_name = #{siteName,jdbcType=VARCHAR},
-      </if>
-      <if test="siteUrl != null" >
-        site_url = #{siteUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where site_id = #{siteId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Site" >
-    update t_site
-    set org_id = #{orgId,jdbcType=VARCHAR},
+    <insert id="insertSelective" parameterType="com.titian.core.domain.Site">
+        insert into t_site
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="siteId != null">
+                site_id,
+            </if>
+            <if test="orgId != null">
+                org_id,
+            </if>
+            <if test="templateId != null">
+                template_id,
+            </if>
+            <if test="siteName != null">
+                site_name,
+            </if>
+            <if test="siteUrl != null">
+                site_url,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="siteId != null">
+                #{siteId,jdbcType=INTEGER},
+            </if>
+            <if test="orgId != null">
+                #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="templateId != null">
+                #{templateId,jdbcType=INTEGER},
+            </if>
+            <if test="siteName != null">
+                #{siteName,jdbcType=VARCHAR},
+            </if>
+            <if test="siteUrl != null">
+                #{siteUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.titian.core.domain.Site">
+        update t_site
+        <set>
+            <if test="orgId != null">
+                org_id = #{orgId,jdbcType=VARCHAR},
+            </if>
+            <if test="templateId != null">
+                template_id = #{templateId,jdbcType=INTEGER},
+            </if>
+            <if test="siteName != null">
+                site_name = #{siteName,jdbcType=VARCHAR},
+            </if>
+            <if test="siteUrl != null">
+                site_url = #{siteUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where site_id = #{siteId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Site">
+    UPDATE t_site
+    SET org_id = #{orgId,jdbcType=VARCHAR},
       template_id = #{templateId,jdbcType=INTEGER},
       site_name = #{siteName,jdbcType=VARCHAR},
       site_url = #{siteUrl,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where site_id = #{siteId,jdbcType=INTEGER}
+    WHERE site_id = #{siteId,jdbcType=INTEGER}
   </update>
 </mapper>

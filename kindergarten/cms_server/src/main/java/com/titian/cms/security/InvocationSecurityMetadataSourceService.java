@@ -6,8 +6,6 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.AntUrlPathMatcher;
-import org.springframework.security.web.util.UrlMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,8 +24,6 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
      * Logger for this class
      */
     private static final Logger logger = LoggerFactory.getLogger(InvocationSecurityMetadataSourceService.class);
-
-    private UrlMatcher urlMatcher = new AntUrlPathMatcher();
 
     private static Map<String, Collection<ConfigAttribute>> resourceMap;
 
@@ -68,12 +64,17 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         String url = ((FilterInvocation) object).getRequestUrl();
 
         for (String resURL : resourceMap.keySet()) {
-            if (urlMatcher.pathMatchesUrl(url, resURL)) {
+            if (pathMatchesUrl(url, resURL)) {
                 return resourceMap.get(resURL);
             }
         }
 
         return null;
+    }
+
+    private boolean pathMatchesUrl(String url, String resURL) {
+        //todo : url匹配
+        return false;
     }
 
     public boolean supports(Class<?> clazz) {
