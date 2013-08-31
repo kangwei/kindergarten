@@ -1,0 +1,27 @@
+/*
+ * author:       可乐加糖
+ * email:        black.angel.liu@gmail.com
+ * description:  后台统一样式表
+ */
+
+.manager_title{
+    height:30px;
+    line-height: 30px;
+    margin:0;
+    padding:0;
+    background-color: #1c6bb6;
+}
+.manager_title h1{
+    margin:0;
+    padding:0 0 0 10px;
+    font-size: 16px;
+    color:#fff;
+    font-family: '黑体';
+}
+
+
+.copyright {
+    color: #fff;
+    text-align: right;
+    height:10px;
+}
