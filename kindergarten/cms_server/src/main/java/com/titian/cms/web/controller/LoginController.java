@@ -8,6 +8,7 @@ package com.titian.cms.web.controller;
 
 import com.opensoft.common.web.PageContext;
 import com.titian.cms.common.Constants;
+import com.titian.cms.common.Result;
 import com.titian.core.dao.UserMapper;
 import com.titian.core.domain.User;
 import org.slf4j.Logger;
@@ -32,16 +33,17 @@ public class LoginController {
     UserMapper userMapper;
 
     @RequestMapping("doLogin")
+    @ResponseBody
     public String doLogin(@RequestParam(required = true) String userAccount,
                           @RequestParam(required = true) String userPassword,
                           Model model) {
         User queriedUser = userMapper.selectByUserAccount(userAccount);
 
-        if (queriedUser.getUserPassword().equals(userPassword)) {
+        if (queriedUser != null && queriedUser.getUserPassword().equals(userPassword)) {
             PageContext.setSessionValue(Constants.SESSION_USER_KEY, queriedUser);
-            return "home";
+            return Result.success().toJson();
         }
         model.addAttribute("msg", "用户名与密码不匹配");
-        return "login";
+        return Result.fail("登陆失败").toJson();
     }
 }

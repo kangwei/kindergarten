@@ -38,9 +38,9 @@ public class OperateLogService {
 
     public void addOperateLog(String service, String operate, String args) {
         User sessionUser = PageContext.getSessionValue(Constants.SESSION_USER_KEY);
-        log.info("{}用户访问{}，执行{}操作，参数：{}",
-                new Object[]{
-                        sessionUser.getUserId(), serviceMap.get(service), operateMap.get(operate), args
-                });
+//        log.info("{}用户访问{}，执行{}操作，参数：{}",
+//                new Object[]{
+//                        sessionUser.getUserId(), serviceMap.get(service), operateMap.get(operate), args
+//                });
     }
 }
