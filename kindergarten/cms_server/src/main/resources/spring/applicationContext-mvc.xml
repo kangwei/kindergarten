@@ -46,6 +46,7 @@
         <property name="forceEncoding" value="true"/>
     </bean>
 
+    <!--拦截器配置-->
     <!--打开注解驱动-->
     <mvc:annotation-driven/>
 </beans>

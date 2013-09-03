@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class Content {
+public class Content extends TitianObject {
     private Integer contentId;
 
     private String contentTitle;

@@ -14,9 +14,12 @@ import com.titian.core.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,7 +35,32 @@ public class LoginController {
     @Autowired
     UserMapper userMapper;
 
-    @RequestMapping("doLogin")
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String home() {
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        UserDetails userDetails = null;
+        if (principal instanceof UserDetails) {
+            userDetails = (UserDetails) principal;
+        }
+        if (userDetails == null) {
+            return "login";
+        }
+        return "home";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout() {
+        return "login";
+    }
+
+    @RequestMapping(value = "doLogin", method = RequestMethod.POST)
     @ResponseBody
     public String doLogin(@RequestParam(required = true) String userAccount,
                           @RequestParam(required = true) String userPassword,

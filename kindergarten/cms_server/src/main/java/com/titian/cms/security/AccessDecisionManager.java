@@ -39,10 +39,6 @@ public class AccessDecisionManager implements org.springframework.security.acces
             return;
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug("访问的url=>：" + object.toString());
-        }
-
         for (ConfigAttribute ca : configAttributes) {
             String needRole = ca.getAttribute();
             if (needRole == null) { //资源没有配置任何权限信息
@@ -51,7 +47,7 @@ public class AccessDecisionManager implements org.springframework.security.acces
             }
 
             if (logger.isDebugEnabled()) {
-                logger.debug("资源需要的角色[{}]", needRole);
+                logger.debug("资源需要的角色[{}]，用户角色[{}]", needRole, authentication.getAuthorities());
             }
 
             for (GrantedAuthority ga : authentication.getAuthorities()) {

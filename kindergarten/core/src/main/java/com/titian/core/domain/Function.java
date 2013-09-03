@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class Function {
+public class Function extends TitianObject {
     private Integer functionId;
 
     private String functionName;

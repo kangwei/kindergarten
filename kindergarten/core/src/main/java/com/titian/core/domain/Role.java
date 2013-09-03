@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class Role {
+public class Role extends TitianObject {
     private Integer roleId;
 
     private String roleName;

@@ -1,6 +1,6 @@
 package com.titian.core.domain;
 
-public class ClassPhoto {
+public class ClassPhoto extends TitianObject {
     private Integer albumId;
 
     private String albumName;

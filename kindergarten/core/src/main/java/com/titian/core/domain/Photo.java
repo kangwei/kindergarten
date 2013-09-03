@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class Photo {
+public class Photo extends TitianObject {
     private Integer photoId;
 
     private Integer albumId;

@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class Template {
+public class Template extends TitianObject {
     private Integer templateId;
 
     private String templateName;

@@ -1,6 +1,6 @@
 package com.titian.core.domain;
 
-public class OrgAndUser {
+public class OrgAndUser extends TitianObject {
     private Integer id;
 
     private String userId;

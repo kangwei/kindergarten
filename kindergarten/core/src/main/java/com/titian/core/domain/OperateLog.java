@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class OperateLog {
+public class OperateLog extends TitianObject {
     private Integer logId;
 
     private String operator;

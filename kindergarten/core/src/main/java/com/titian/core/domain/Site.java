@@ -2,7 +2,7 @@ package com.titian.core.domain;
 
 import java.util.Date;
 
-public class Site {
+public class Site extends TitianObject {
     private Integer siteId;
 
     private String orgId;

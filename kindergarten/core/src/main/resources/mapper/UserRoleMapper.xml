@@ -16,6 +16,13 @@
         from t_user_role
         where id = #{id,jdbcType=INTEGER}
     </select>
+
+    <select id="listUserRole" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select <include refid="Base_Column_List"/>
+        from t_user_role
+        where user_id =#{userId}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         DELETE FROM t_user_role
         WHERE id = #{id,jdbcType=INTEGER}

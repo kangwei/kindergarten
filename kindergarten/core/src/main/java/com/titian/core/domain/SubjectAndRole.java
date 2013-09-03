@@ -1,6 +1,6 @@
 package com.titian.core.domain;
 
-public class SubjectAndRole {
+public class SubjectAndRole extends TitianObject {
     private Integer id;
 
     private Integer subjectId;
