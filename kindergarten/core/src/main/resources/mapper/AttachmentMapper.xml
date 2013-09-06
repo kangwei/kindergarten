@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.AttachmentMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Attachment" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="content_id" property="contentId" jdbcType="INTEGER" />
@@ -19,13 +19,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_content_attachment
-    where id = #{id,jdbcType=INTEGER}
+    DELETE FROM t_content_attachment
+    WHERE id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Attachment" >
-    insert into t_content_attachment (id, content_id, url, 
+    INSERT INTO t_content_attachment (id, content_id, url,
       type, create_time)
-    values (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+    VALUES (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR},
       #{type,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.Attachment" >
@@ -84,11 +84,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Attachment" >
-    update t_content_attachment
-    set content_id = #{contentId,jdbcType=INTEGER},
+    UPDATE t_content_attachment
+    SET content_id = #{contentId,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
       type = #{type,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

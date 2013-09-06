@@ -11,8 +11,8 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
     </resultMap>
     <sql id="Base_Column_List">
-    site_id, org_id, template_id, site_name, site_url, create_time
-  </sql>
+        site_id, org_id, template_id, site_name, site_url, create_time
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -21,7 +21,8 @@
     </select>
 
     <select id="selectByName" resultMap="BaseResultMap" parameterType="map">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from t_site
         <if test="siteName != null">
             where site_name = #{siteName}
@@ -29,17 +30,17 @@
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    DELETE FROM t_site
-    WHERE site_id = #{siteId,jdbcType=INTEGER}
-  </delete>
+        DELETE FROM t_site
+        WHERE site_id = #{siteId,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.titian.core.domain.Site">
-    INSERT INTO t_site (site_id, org_id, template_id,
-      site_name, site_url, create_time
-      )
-    VALUES (#{siteId,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER},
-      #{siteName,jdbcType=VARCHAR}, #{siteUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
-      )
-  </insert>
+        INSERT INTO t_site (site_id, org_id, template_id,
+                            site_name, site_url, create_time
+        )
+            VALUES (#{siteId,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER},
+                    #{siteName,jdbcType=VARCHAR}, #{siteUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+            )
+    </insert>
     <insert id="insertSelective" parameterType="com.titian.core.domain.Site">
         insert into t_site
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -105,12 +106,12 @@
         where site_id = #{siteId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Site">
-    UPDATE t_site
-    SET org_id = #{orgId,jdbcType=VARCHAR},
-      template_id = #{templateId,jdbcType=INTEGER},
-      site_name = #{siteName,jdbcType=VARCHAR},
-      site_url = #{siteUrl,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
-    WHERE site_id = #{siteId,jdbcType=INTEGER}
-  </update>
+        UPDATE t_site
+        SET org_id = #{orgId,jdbcType=VARCHAR},
+            template_id = #{templateId,jdbcType=INTEGER},
+            site_name = #{siteName,jdbcType=VARCHAR},
+            site_url = #{siteUrl,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP}
+        WHERE site_id = #{siteId,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("function")
-public class FunctionController {
+public class FunctionController extends AbstractBaseController {
     private static final Logger log = LoggerFactory.getLogger(FunctionController.class);
 
     @Autowired
@@ -33,7 +33,18 @@ public class FunctionController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     @ResponseBody
     public String create(Function function) {
-        functionMapper.insert(function);
-        return Result.success().toJson();
+       return effectiveResult(functionMapper.insert(function));
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @ResponseBody
+    public String update(Function function) {
+        return effectiveResult(functionMapper.updateByPrimaryKey(function));
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    @ResponseBody
+    public String delete(Integer functionId) {
+        return effectiveResult(functionMapper.deleteByPrimaryKey(functionId));
     }
 }

@@ -1,8 +1,10 @@
 package com.titian.cms.security;
 
+import com.opensoft.common.utils.BeanUtils;
 import com.titian.core.dao.UserMapper;
 import com.titian.core.dao.UserRoleMapper;
 import com.titian.core.domain.UserRole;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,17 +48,24 @@ public class UserDetailService implements UserDetailsService {
 
         //查询用户及用户的角色
         if (user != null) {
-            if (!"0".equals(user.getStatus())) {
-                return new User(username, user.getUserPassword(), false, true, true, true, auths);
-            }
             List<UserRole> userRoles = userRoleMapper.listUserRole(user.getUserId());
             for (UserRole userRole : userRoles) {
                 auths.add(new GrantedAuthorityImpl(String.valueOf(userRole.getRoleId())));
             }
-            if (log.isDebugEnabled()) {
-                log.debug("查找到用户：{}，用户的角色：{}", user, userRoles);
+            LoginUser loginUser = new LoginUser(username, user.getUserPassword(), true, true, true, auths);
+            try {
+                PropertyUtils.copyProperties(loginUser, user);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
             }
-            return new User(username, user.getUserPassword(), true, true, true, true, auths);
+            if (log.isDebugEnabled()) {
+                log.debug("查找到用户：{}", loginUser);
+            }
+            return loginUser;
         }
 
         throw new UsernameNotFoundException(username + "的用户不存在");

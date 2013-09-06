@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.FunctionMapper">
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
     <resultMap id="BaseResultMap" type="com.titian.core.domain.Function">
         <id column="function_id" property="functionId" jdbcType="INTEGER"/>
         <result column="function_name" property="functionName" jdbcType="VARCHAR"/>
@@ -27,15 +27,15 @@
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_function
-    where function_id = #{functionId,jdbcType=INTEGER}
+    DELETE FROM t_function
+    WHERE function_id = #{functionId,jdbcType=INTEGER}
   </delete>
 
     <insert id="insert" parameterType="com.titian.core.domain.Function">
-    insert into t_function (function_id, function_name, function_desc, 
+    INSERT INTO t_function (function_id, function_name, function_desc,
       create_time, url, parent_id, 
       is_menu)
-    values (#{functionId,jdbcType=INTEGER}, #{functionName,jdbcType=VARCHAR}, #{functionDesc,jdbcType=VARCHAR}, 
+    VALUES (#{functionId,jdbcType=INTEGER}, #{functionName,jdbcType=VARCHAR}, #{functionDesc,jdbcType=VARCHAR},
       #{createTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
       #{isMenu,jdbcType=CHAR})
   </insert>
@@ -114,13 +114,13 @@
         where function_id = #{functionId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Function">
-    update t_function
-    set function_name = #{functionName,jdbcType=VARCHAR},
+    UPDATE t_function
+    SET function_name = #{functionName,jdbcType=VARCHAR},
       function_desc = #{functionDesc,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       url = #{url,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},
       is_menu = #{isMenu,jdbcType=CHAR}
-    where function_id = #{functionId,jdbcType=INTEGER}
+    WHERE function_id = #{functionId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.titian.core.dao.MenuMapper">
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+    <resultMap id="BaseResultMap" type="com.titian.core.domain.Menu">
+        <id column="function_id" property="functionId" jdbcType="INTEGER"/>
+        <result column="function_name" property="functionName" jdbcType="VARCHAR"/>
+        <result column="function_desc" property="functionDesc" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="is_menu" property="isMenu" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        function_id, function_name, function_desc, create_time, url, parent_id, is_menu
+    </sql>
+
+    <select id="getMenuByUserId" parameterType="string" resultMap="BaseResultMap"
+            useCache="false">
+        select f.* from t_function f, t_role_function rf, t_user_role ur
+        where f.function_id = rf.function_id
+        and rf.role_id = ur.role_id
+        and f.is_menu = 0
+        and ur.user_id = #{userId}
+    </select>
+</mapper>

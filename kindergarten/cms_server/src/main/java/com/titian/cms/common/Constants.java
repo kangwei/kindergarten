@@ -17,4 +17,5 @@ public class Constants {
      * session中用户的key
      */
     public static final String SESSION_USER_KEY = "sessionUser";
+    public static final String PAGE = "page";
 }

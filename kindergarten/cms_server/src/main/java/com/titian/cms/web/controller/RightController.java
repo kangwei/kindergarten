@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("right")
-public class RightController {
+public class RightController extends AbstractBaseController {
     private static final Logger log = LoggerFactory.getLogger(RightController.class);
 
     @Autowired

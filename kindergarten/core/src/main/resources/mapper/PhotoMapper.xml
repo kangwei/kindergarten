@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.PhotoMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Photo" >
     <id column="photo_id" property="photoId" jdbcType="INTEGER" />
     <result column="album_id" property="albumId" jdbcType="INTEGER" />
@@ -21,14 +21,14 @@
     where photo_id = #{photoId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_photo
-    where photo_id = #{photoId,jdbcType=INTEGER}
+    DELETE FROM t_photo
+    WHERE photo_id = #{photoId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Photo" >
-    insert into t_photo (photo_id, album_id, photo_url, 
+    INSERT INTO t_photo (photo_id, album_id, photo_url,
       photo_title, photo_content, create_time, 
       status)
-    values (#{photoId,jdbcType=INTEGER}, #{albumId,jdbcType=INTEGER}, #{photoUrl,jdbcType=VARCHAR}, 
+    VALUES (#{photoId,jdbcType=INTEGER}, #{albumId,jdbcType=INTEGER}, #{photoUrl,jdbcType=VARCHAR},
       #{photoTitle,jdbcType=VARCHAR}, #{photoContent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=CHAR})
   </insert>
@@ -106,13 +106,13 @@
     where photo_id = #{photoId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Photo" >
-    update t_photo
-    set album_id = #{albumId,jdbcType=INTEGER},
+    UPDATE t_photo
+    SET album_id = #{albumId,jdbcType=INTEGER},
       photo_url = #{photoUrl,jdbcType=VARCHAR},
       photo_title = #{photoTitle,jdbcType=VARCHAR},
       photo_content = #{photoContent,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=CHAR}
-    where photo_id = #{photoId,jdbcType=INTEGER}
+    WHERE photo_id = #{photoId,jdbcType=INTEGER}
   </update>
 </mapper>

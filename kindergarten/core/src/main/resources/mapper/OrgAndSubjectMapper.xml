@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.OrgAndSubjectMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.OrgAndSubject" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="org_id" property="orgId" jdbcType="VARCHAR" />
@@ -17,13 +17,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_org_subject
-    where id = #{id,jdbcType=INTEGER}
+    DELETE FROM t_org_subject
+    WHERE id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.OrgAndSubject" >
-    insert into t_org_subject (id, org_id, subject_id
+    INSERT INTO t_org_subject (id, org_id, subject_id
       )
-    values (#{id,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{subjectId,jdbcType=INTEGER}
+    VALUES (#{id,jdbcType=INTEGER}, #{orgId,jdbcType=VARCHAR}, #{subjectId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.OrgAndSubject" >
@@ -64,9 +64,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.OrgAndSubject" >
-    update t_org_subject
-    set org_id = #{orgId,jdbcType=VARCHAR},
+    UPDATE t_org_subject
+    SET org_id = #{orgId,jdbcType=VARCHAR},
       subject_id = #{subjectId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

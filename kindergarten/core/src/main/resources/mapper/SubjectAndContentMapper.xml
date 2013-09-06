@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.SubjectAndContentMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.SubjectAndContent" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
@@ -18,13 +18,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_subject_content
-    where id = #{id,jdbcType=INTEGER}
+    DELETE FROM t_subject_content
+    WHERE id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.SubjectAndContent" >
-    insert into t_subject_content (id, subject_id, content_id, 
+    INSERT INTO t_subject_content (id, subject_id, content_id,
       sort)
-    values (#{id,jdbcType=INTEGER}, #{subjectId,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER}, 
+    VALUES (#{id,jdbcType=INTEGER}, #{subjectId,jdbcType=INTEGER}, #{contentId,jdbcType=INTEGER},
       #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.SubjectAndContent" >
@@ -74,10 +74,10 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.SubjectAndContent" >
-    update t_subject_content
-    set subject_id = #{subjectId,jdbcType=INTEGER},
+    UPDATE t_subject_content
+    SET subject_id = #{subjectId,jdbcType=INTEGER},
       content_id = #{contentId,jdbcType=INTEGER},
       sort = #{sort,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.DevelopmentMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Development" >
     <id column="file_id" property="fileId" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="VARCHAR" />
@@ -21,14 +21,14 @@
     where file_id = #{fileId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_development_file
-    where file_id = #{fileId,jdbcType=INTEGER}
+    DELETE FROM t_development_file
+    WHERE file_id = #{fileId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Development" >
-    insert into t_development_file (file_id, content, content_type, 
+    INSERT INTO t_development_file (file_id, content, content_type,
       teacher, child, create_time, 
       status)
-    values (#{fileId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{contentType,jdbcType=CHAR}, 
+    VALUES (#{fileId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{contentType,jdbcType=CHAR},
       #{teacher,jdbcType=VARCHAR}, #{child,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=CHAR})
   </insert>
@@ -106,13 +106,13 @@
     where file_id = #{fileId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Development" >
-    update t_development_file
-    set content = #{content,jdbcType=VARCHAR},
+    UPDATE t_development_file
+    SET content = #{content,jdbcType=VARCHAR},
       content_type = #{contentType,jdbcType=CHAR},
       teacher = #{teacher,jdbcType=VARCHAR},
       child = #{child,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=CHAR}
-    where file_id = #{fileId,jdbcType=INTEGER}
+    WHERE file_id = #{fileId,jdbcType=INTEGER}
   </update>
 </mapper>

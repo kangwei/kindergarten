@@ -6,6 +6,10 @@
  */
 package com.titian.cms;
 
+import com.opensoft.common.exception.AppException;
+import com.opensoft.common.utils.TreeCreator;
+import com.titian.core.domain.Menu;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +86,22 @@ public class ReadConsole1 {
             e.printStackTrace();
         }
 */
+        Menu menu = new Menu();
+        menu.setFunctionId(1);
+        menu.setParentId(0);
+        menu.setFunctionName("父节点");
+        Menu menu1 = new Menu();
+        menu1.setFunctionId(2);
+        menu1.setParentId(1);
+        menu1.setFunctionName("孩子节点");
+        Menu root = new Menu();
+        root.setFunctionId(0);
+        try {
+            root = TreeCreator.createTree(com.opensoft.common.utils.CollectionUtils.asList(menu, menu1), root, "functionId", "parentId", "children");
+        } catch (AppException e) {
+            e.printStackTrace();
+        }
+        System.out.println(root.toString());
     }
 
     //判断字母还是数字

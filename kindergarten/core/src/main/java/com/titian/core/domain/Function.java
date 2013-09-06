@@ -3,19 +3,13 @@ package com.titian.core.domain;
 import java.util.Date;
 
 public class Function extends TitianObject {
-    private Integer functionId;
-
-    private String functionName;
-
-    private String functionDesc;
-
-    private Date createTime;
-
-    private String url;
-
-    private Integer parentId;
-
-    private String isMenu;
+    public Integer functionId;
+    public String functionName;
+    public String functionDesc;
+    public Date createTime;
+    public String url;
+    public Integer parentId;
+    public String isMenu;
 
     public Integer getFunctionId() {
         return functionId;

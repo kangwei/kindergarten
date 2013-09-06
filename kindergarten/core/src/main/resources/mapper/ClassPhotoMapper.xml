@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.ClassPhotoMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.ClassPhoto" >
     <id column="album_id" property="albumId" jdbcType="INTEGER" />
     <result column="album_name" property="albumName" jdbcType="VARCHAR" />
@@ -18,13 +18,13 @@
     where album_id = #{albumId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_class_photo
-    where album_id = #{albumId,jdbcType=INTEGER}
+    DELETE FROM t_class_photo
+    WHERE album_id = #{albumId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.ClassPhoto" >
-    insert into t_class_photo (album_id, album_name, org_id, 
+    INSERT INTO t_class_photo (album_id, album_name, org_id,
       album_desc)
-    values (#{albumId,jdbcType=INTEGER}, #{albumName,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}, 
+    VALUES (#{albumId,jdbcType=INTEGER}, #{albumName,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR},
       #{albumDesc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.ClassPhoto" >
@@ -74,10 +74,10 @@
     where album_id = #{albumId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.ClassPhoto" >
-    update t_class_photo
-    set album_name = #{albumName,jdbcType=VARCHAR},
+    UPDATE t_class_photo
+    SET album_name = #{albumName,jdbcType=VARCHAR},
       org_id = #{orgId,jdbcType=VARCHAR},
       album_desc = #{albumDesc,jdbcType=VARCHAR}
-    where album_id = #{albumId,jdbcType=INTEGER}
+    WHERE album_id = #{albumId,jdbcType=INTEGER}
   </update>
 </mapper>

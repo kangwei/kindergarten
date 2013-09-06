@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.OrgAndUserMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.OrgAndUser" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
@@ -17,13 +17,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_org_user
-    where id = #{id,jdbcType=INTEGER}
+    DELETE FROM t_org_user
+    WHERE id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.OrgAndUser" >
-    insert into t_org_user (id, user_id, org_id
+    INSERT INTO t_org_user (id, user_id, org_id
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}
+    VALUES (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{orgId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.OrgAndUser" >
@@ -64,9 +64,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.OrgAndUser" >
-    update t_org_user
-    set user_id = #{userId,jdbcType=VARCHAR},
+    UPDATE t_org_user
+    SET user_id = #{userId,jdbcType=VARCHAR},
       org_id = #{orgId,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    WHERE id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

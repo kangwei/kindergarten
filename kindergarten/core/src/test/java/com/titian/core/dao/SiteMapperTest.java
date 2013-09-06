@@ -6,6 +6,7 @@
  */
 package com.titian.core.dao;
 
+import com.titian.core.domain.Function;
 import com.titian.core.domain.Site;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,6 +29,13 @@ import java.util.Map;
 public class SiteMapperTest extends AbstractJUnit4SpringContextTests {
     @Autowired
     SiteMapper siteMapper;
+
+    @Autowired
+    RoleAndFunctionMapper roleAndFunctionMapper;
+
+    @Autowired
+    FunctionMapper functionMapper;
+
     Site site;
 
     @org.junit.Before
@@ -51,6 +59,13 @@ public class SiteMapperTest extends AbstractJUnit4SpringContextTests {
 
     @org.junit.Test
     public void testDeleteByPrimaryKey() throws Exception {
+        roleAndFunctionMapper.listRoleFunctionByFunctionId(1);
+        roleAndFunctionMapper.listRoleFunctionByFunctionId(1);
+        Function function = new Function();
+        function.setFunctionId(1);
+        function.setFunctionName("测试");
+        functionMapper.updateByPrimaryKey(function);
+        roleAndFunctionMapper.listRoleFunctionByFunctionId(1);
 
     }
 
@@ -61,9 +76,9 @@ public class SiteMapperTest extends AbstractJUnit4SpringContextTests {
 
     @org.junit.Test
     public void testSelectByPrimaryKey() throws Exception {
-        Site site1 = siteMapper.selectByPrimaryKey(2);
-        site1.setSiteName("更改");
-        siteMapper.updateByPrimaryKey(site1);
+        Site site4 = siteMapper.selectByPrimaryKey(2);
+        site.setSiteName("更改");
+        siteMapper.updateByPrimaryKey(site);
         Site site2 = siteMapper.selectByPrimaryKey(2);
         Site site3 = siteMapper.selectByPrimaryKey(2);
         System.out.println(site2.getSiteName());

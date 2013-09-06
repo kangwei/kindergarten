@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.OperateLogMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.OperateLog" >
     <id column="log_id" property="logId" jdbcType="INTEGER" />
     <result column="operator" property="operator" jdbcType="VARCHAR" />
@@ -19,13 +19,13 @@
     where log_id = #{logId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_operate_log
-    where log_id = #{logId,jdbcType=INTEGER}
+    DELETE FROM t_operate_log
+    WHERE log_id = #{logId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.OperateLog" >
-    insert into t_operate_log (log_id, operator, time, 
+    INSERT INTO t_operate_log (log_id, operator, time,
       type, content)
-    values (#{logId,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+    VALUES (#{logId,jdbcType=INTEGER}, #{operator,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
       #{type,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.OperateLog" >
@@ -84,11 +84,11 @@
     where log_id = #{logId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.OperateLog" >
-    update t_operate_log
-    set operator = #{operator,jdbcType=VARCHAR},
+    UPDATE t_operate_log
+    SET operator = #{operator,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP},
       type = #{type,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR}
-    where log_id = #{logId,jdbcType=INTEGER}
+    WHERE log_id = #{logId,jdbcType=INTEGER}
   </update>
 </mapper>

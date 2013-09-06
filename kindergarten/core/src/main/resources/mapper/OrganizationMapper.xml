@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.OrganizationMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Organization" >
     <id column="org_id" property="orgId" jdbcType="VARCHAR" />
     <result column="org_name" property="orgName" jdbcType="VARCHAR" />
@@ -26,15 +26,15 @@
     where org_id = #{orgId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from t_organization
-    where org_id = #{orgId,jdbcType=VARCHAR}
+    DELETE FROM t_organization
+    WHERE org_id = #{orgId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Organization" >
-    insert into t_organization (org_id, org_name, motto, 
+    INSERT INTO t_organization (org_id, org_name, motto,
       introduce, create_time, update_time, 
       status, org_type, org_address, 
       org_master, org_master_mobile)
-    values (#{orgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{motto,jdbcType=VARCHAR}, 
+    VALUES (#{orgId,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{motto,jdbcType=VARCHAR},
       #{introduce,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=CHAR}, #{orgType,jdbcType=CHAR}, #{orgAddress,jdbcType=VARCHAR}, 
       #{orgMaster,jdbcType=VARCHAR}, #{orgMasterMobile,jdbcType=VARCHAR})
@@ -149,8 +149,8 @@
     where org_id = #{orgId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Organization" >
-    update t_organization
-    set org_name = #{orgName,jdbcType=VARCHAR},
+    UPDATE t_organization
+    SET org_name = #{orgName,jdbcType=VARCHAR},
       motto = #{motto,jdbcType=VARCHAR},
       introduce = #{introduce,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -160,6 +160,6 @@
       org_address = #{orgAddress,jdbcType=VARCHAR},
       org_master = #{orgMaster,jdbcType=VARCHAR},
       org_master_mobile = #{orgMasterMobile,jdbcType=VARCHAR}
-    where org_id = #{orgId,jdbcType=VARCHAR}
+    WHERE org_id = #{orgId,jdbcType=VARCHAR}
   </update>
 </mapper>

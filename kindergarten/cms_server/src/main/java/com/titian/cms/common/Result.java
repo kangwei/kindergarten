@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,7 +27,9 @@ public class Result extends TitianObject {
 
     private String desc;
 
-    private Map<String, Object> data = new HashMap<String, Object>();
+    private Map<String, Object> dataMap = new HashMap<String, Object>();
+
+    private Object dataObject;
 
     private Result() {
     }
@@ -57,16 +60,37 @@ public class Result extends TitianObject {
         return this;
     }
 
+    public Result setData(Object value) {
+        this.dataObject = value;
+        return this;
+    }
+
     public Result setData(String key, Object value) {
-        this.data.put(key, value);
+        this.dataMap.put(key, value);
         return this;
     }
 
     public Object getDataValueByKey(String key) {
-        return data.get(key);
+        return dataMap.get(key);
+    }
+
+    public Object getDataObject() {
+        return dataObject;
     }
 
     public String toJson() {
-        return GsonUtils.toJson(this);
+        return toJson(null);
+    }
+
+    public String toJson(List<String> skipField) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("success", success);
+        map.put("desc", desc);
+        if (dataObject != null) {
+            map.put("data", dataObject);
+        } else {
+            map.put("data", dataMap);
+        }
+        return GsonUtils.toJson(map, skipField);
     }
 }

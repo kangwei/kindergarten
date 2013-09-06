@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.ContentMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Content" >
     <id column="content_id" property="contentId" jdbcType="INTEGER" />
     <result column="content_title" property="contentTitle" jdbcType="VARCHAR" />
@@ -27,16 +27,16 @@
     where content_id = #{contentId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_content
-    where content_id = #{contentId,jdbcType=INTEGER}
+    DELETE FROM t_content
+    WHERE content_id = #{contentId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Content" >
-    insert into t_content (content_id, content_title, create_time, 
+    INSERT INTO t_content (content_id, content_title, create_time,
       author, publisher, editor, 
       publish_time, content_type, status, 
       content, link_url, source_url
       )
-    values (#{contentId,jdbcType=INTEGER}, #{contentTitle,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    VALUES (#{contentId,jdbcType=INTEGER}, #{contentTitle,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{editor,jdbcType=VARCHAR}, 
       #{publishTime,jdbcType=TIMESTAMP}, #{contentType,jdbcType=CHAR}, #{status,jdbcType=CHAR}, 
       #{content,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, #{sourceUrl,jdbcType=VARCHAR}
@@ -161,8 +161,8 @@
     where content_id = #{contentId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Content" >
-    update t_content
-    set content_title = #{contentTitle,jdbcType=VARCHAR},
+    UPDATE t_content
+    SET content_title = #{contentTitle,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       author = #{author,jdbcType=VARCHAR},
       publisher = #{publisher,jdbcType=VARCHAR},
@@ -173,6 +173,6 @@
       content = #{content,jdbcType=VARCHAR},
       link_url = #{linkUrl,jdbcType=VARCHAR},
       source_url = #{sourceUrl,jdbcType=VARCHAR}
-    where content_id = #{contentId,jdbcType=INTEGER}
+    WHERE content_id = #{contentId,jdbcType=INTEGER}
   </update>
 </mapper>

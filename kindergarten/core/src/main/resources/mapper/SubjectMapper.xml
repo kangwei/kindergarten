@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.SubjectMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Subject" >
     <id column="subject_id" property="subjectId" jdbcType="INTEGER" />
     <result column="site_id" property="siteId" jdbcType="INTEGER" />
@@ -24,15 +24,15 @@
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_subject
-    where subject_id = #{subjectId,jdbcType=INTEGER}
+    DELETE FROM t_subject
+    WHERE subject_id = #{subjectId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Subject" >
-    insert into t_subject (subject_id, site_id, template_id, 
+    INSERT INTO t_subject (subject_id, site_id, template_id,
       subject_name, parent_id, subject_type, 
       status, create_time, business_type
       )
-    values (#{subjectId,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER}, 
+    VALUES (#{subjectId,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{templateId,jdbcType=INTEGER},
       #{subjectName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{subjectType,jdbcType=CHAR}, 
       #{status,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{businessType,jdbcType=VARCHAR}
       )
@@ -129,8 +129,8 @@
     where subject_id = #{subjectId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Subject" >
-    update t_subject
-    set site_id = #{siteId,jdbcType=INTEGER},
+    UPDATE t_subject
+    SET site_id = #{siteId,jdbcType=INTEGER},
       template_id = #{templateId,jdbcType=INTEGER},
       subject_name = #{subjectName,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=INTEGER},
@@ -138,6 +138,6 @@
       status = #{status,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       business_type = #{businessType,jdbcType=VARCHAR}
-    where subject_id = #{subjectId,jdbcType=INTEGER}
+    WHERE subject_id = #{subjectId,jdbcType=INTEGER}
   </update>
 </mapper>

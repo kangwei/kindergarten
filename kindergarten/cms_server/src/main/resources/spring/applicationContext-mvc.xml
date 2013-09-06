@@ -21,6 +21,9 @@
         </property>
     </bean>
 
+    <!--设置全局的异常处理-->
+    <bean id="exceptionHandler" class="com.titian.cms.exception.ExceptionHandler"/>
+
     <!--过滤器链设定，注意过滤器的加载顺序-->
     <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
         <sec:filter-chain-map path-type="ant">

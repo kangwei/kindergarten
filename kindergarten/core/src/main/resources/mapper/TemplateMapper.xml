@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.titian.core.dao.TemplateMapper" >
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
   <resultMap id="BaseResultMap" type="com.titian.core.domain.Template" >
     <id column="template_id" property="templateId" jdbcType="INTEGER" />
     <result column="template_name" property="templateName" jdbcType="VARCHAR" />
@@ -18,12 +18,12 @@
     where template_id = #{templateId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_template
-    where template_id = #{templateId,jdbcType=INTEGER}
+    DELETE FROM t_template
+    WHERE template_id = #{templateId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.titian.core.domain.Template" >
-    insert into t_template (template_id, template_name, create_time)
-    values (#{templateId,jdbcType=INTEGER}, #{templateName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    INSERT INTO t_template (template_id, template_name, create_time)
+    VALUES (#{templateId,jdbcType=INTEGER}, #{templateName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.titian.core.domain.Template" >
     insert into t_template
@@ -63,9 +63,9 @@
     where template_id = #{templateId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.titian.core.domain.Template" >
-    update t_template
-    set template_name = #{templateName,jdbcType=VARCHAR},
+    UPDATE t_template
+    SET template_name = #{templateName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP}
-    where template_id = #{templateId,jdbcType=INTEGER}
+    WHERE template_id = #{templateId,jdbcType=INTEGER}
   </update>
 </mapper>

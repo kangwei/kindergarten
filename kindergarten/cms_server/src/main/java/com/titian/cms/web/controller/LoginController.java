@@ -9,13 +9,12 @@ package com.titian.cms.web.controller;
 import com.opensoft.common.web.PageContext;
 import com.titian.cms.common.Constants;
 import com.titian.cms.common.Result;
+import com.titian.cms.security.LoginUser;
 import com.titian.core.dao.UserMapper;
 import com.titian.core.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author : KangWei
  */
 @Controller
-public class LoginController {
+public class LoginController extends AbstractBaseController{
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
@@ -37,17 +36,11 @@ public class LoginController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home() {
-        Object principal = SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
-        UserDetails userDetails = null;
-        if (principal instanceof UserDetails) {
-            userDetails = (UserDetails) principal;
-        }
+        LoginUser userDetails = getSessionUser();
         if (userDetails == null) {
             return "login";
         }
-        return "home";
+        return "index";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
@@ -60,6 +53,7 @@ public class LoginController {
         return "login";
     }
 
+    @Deprecated
     @RequestMapping(value = "doLogin", method = RequestMethod.POST)
     @ResponseBody
     public String doLogin(@RequestParam(required = true) String userAccount,

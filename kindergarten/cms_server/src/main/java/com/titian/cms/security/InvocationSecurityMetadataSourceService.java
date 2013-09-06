@@ -71,7 +71,7 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         }
 
         //通过硬编码设置，resouce和role
-        Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
+        /*Collection<ConfigAttribute> atts = new ArrayList<ConfigAttribute>();
         ConfigAttribute ca = new SecurityConfig("admin");
         atts.add(ca);
         resourceMap.put("/forbidden", atts);
@@ -79,7 +79,7 @@ public class InvocationSecurityMetadataSourceService implements FilterInvocation
         atts = new ArrayList<ConfigAttribute>();
         ca = new SecurityConfig("user");
         atts.add(ca);
-        resourceMap.put("/allow", atts);
+        resourceMap.put("/allow", atts);*/
     }
 
     /**

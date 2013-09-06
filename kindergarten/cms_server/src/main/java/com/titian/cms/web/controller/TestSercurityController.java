@@ -7,6 +7,7 @@
 package com.titian.cms.web.controller;
 
 import com.opensoft.common.utils.json.gson.GsonUtils;
+import com.titian.cms.exception.ServiceException;
 import com.titian.core.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class TestSercurityController {
     @RequestMapping("/forbidden")
     public String forbidden() {
         log.info("访问forbidden");
-        return "forbidden";
+        throw new ServiceException("我是错误");
     }
 
     @RequestMapping("/json")
