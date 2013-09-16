@@ -1,0 +1,26 @@
+/**
+ * Created with IntelliJ IDEA.
+ * User: 可乐加糖
+ * Date: 13-9-16
+ * Time: 下午4:58
+ * To change this template use File | Settings | File Templates.
+ */
+
+{
+    'items':[
+        {
+            username:'张三同学',
+            mobile:'13900239941',
+            sex:'男'
+        },{
+            username:'李四同学',
+            mobile:'13900239941',
+            sex:'男'
+        },{
+            username:'赵云同学',
+            mobile:'13900239941',
+            sex:'男'
+        }
+    ],
+    'result':3
+}
